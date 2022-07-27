@@ -1,0 +1,48 @@
+html, body{
+	font-family: arial;
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#container{
+	display: flex;
+	justify-content: center;
+	background-image: url("images/Roulette/Generic\ Felt\ Mat.jpeg");
+	height: 470px;
+	padding: 20px;
+	color: #fff;
+}
+.chip{
+    width: 20px;
+	height: 20px;
+    position:absolute;
+}
+#one{
+    background-image: url("images/Roulette/Chip1.png");
+}
+#five{
+    background-image: url("images/Roulette/Chip5.png");
+}
+#ten{
+    background-image: url("images/Roulette/Chip10.png");
+}
+#twenty{
+    background-image: url("images/Roulette/Chip20.png");
+}
+#fifty{
+    background-image: url("images/Roulette/Chip50.png");
+}
+#hundred{
+    background-image: url("images/Roulette/Chip100.png");
+}
+#thousand{
+    background-image: url("images/Roulette/Chip1000.png");
+}
+#fiveK{
+    background-image: url("images/Roulette/Chip5000.png");
+}
