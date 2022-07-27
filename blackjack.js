@@ -77,12 +77,16 @@ function stay() {
 function houseturn(){
     //Get current points for the house
     var points = 0;
-    //If under 16 hit
-    //If over 17 stay
-    if(points < 16){
-        hitMe();
+    //loop until stay
+    while(points < 17){
+        //If under 16 hit
+        if(points < 17){
+            hitMe();
+        }
+        
     }
-    else{
+    //If over 17 stay
+    if(points > 17){
         stay();
     }
 }
