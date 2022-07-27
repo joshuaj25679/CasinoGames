@@ -14,3 +14,57 @@ container.setAttribute('id', 'container');
 document.body.append(container);
 
 startGame();
+
+let wheel = document.getElementsByClassName('wheel')[0];
+let ballTrack = document.getElementsByClassName('ballTrack')[0];
+
+function resetGame(){
+    bankValue = 1000;
+    currentBet = 0;
+    wager = 5;
+    bet = [];
+    numbersBet = [];
+    previousNumbers = [];
+    document.getElementById('betting_board').remove();
+    document.getElementById('notification').remove();
+    buildBettingBoard();
+}
+
+function startGame(){
+    buildWheel();
+    buildBettingBoard();
+}
+
+function gameOver(){
+    let notification = document.createElement('div');
+    notification.setAttribute('id', 'notification');
+        let nSpan = document.createElement('span');
+        nSpan.setAttribute('class', 'nSpan');
+        nSpan.innerText = 'Bankrupt';
+        notification.append(nSpan);
+
+        let nBtn = document.createElement('div');
+        nBtn.setAttribute('class', "nBtn");
+        nBtn.innerText = 'Play Again';
+        nBtn.onclick = function(){
+            resetGame();
+        }
+        notification.append(nBtn);
+    container.prepend(notification);
+}
+
+function buildWheel(){
+    let wheel = document.createElement('div');
+    wheel.setAttribute('class', 'wheel');
+
+    let outerRim = document.createElement('div');
+    outerRim.setAttribute('class', 'outerRim');
+    wheel.append(outerRim);
+
+    let numbers = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+    for (i = 0; i < numbers.length; i++) {
+        let a = i + 1;
+        let spanClass = (numbers[i] < 10)? 'single' : 'double';
+        let sect = document.createElement('div');
+    }
+}
