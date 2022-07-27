@@ -66,5 +66,50 @@ function buildWheel(){
         let a = i + 1;
         let spanClass = (numbers[i] < 10)? 'single' : 'double';
         let sect = document.createElement('div');
+        sect.setAttribute('id', 'sect' + a);
+        sect.setAttribute('class', 'sect');
+        let span = document.createElement('span');
+        span.setAttribute('class', spanClass);
+        span.innerText = numbers[i];
+        sect.append(span);
+        let block = document.createElement('div');
+        block.setAttribute('class', 'block');
+        sect.append(block);
+        wheel.append(sect);
     }
+
+    let pocketsRim = document.createElement('div');
+    pocketsRim.setAttribute('class', 'pocketsRim');
+    wheel.append(pocketsRim);
+
+    let ballTrack = document.createElement('div');
+    ballTrack.setAttribute('class', 'ballTrack');
+    let ball = document.createElement('div');
+    ball.setAttribute('class', 'ball');
+    ballTrack.append(ball);
+    wheel.append(ballTrack);
+
+    let pockets = document.createElement('div');
+    pockets.setAttribute('class', 'pockets');
+    wheel.append(pockets);
+
+    let cone = document.createElement('div');
+    cone.setAttribute('class', 'cone');
+    wheel.append(cone);
+
+    let turret = document.createElement('div');
+    turret.setAttribute('class', 'turret');
+    wheel.append(turret);
+
+    let turretHandle = document.createElement('div');
+    turretHandle.setAttribute('class', 'turretHandle');
+    let thendOne = document.createElement('div');
+    thendOne.setAttribute('class', 'thendOne');
+    turretHandle.append(thendOne);
+    let thendTwo = document.createElement('div');
+    thendTwo.setAttribute('class', 'thendTwo');
+    turretHandle.append(thendTwo);
+    wheel.append(turretHandle);
+
+    container.append(wheel);
 }
