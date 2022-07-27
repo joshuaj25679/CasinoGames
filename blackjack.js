@@ -58,7 +58,7 @@ function hitMe() {
     //Change the total points for each player
 
     //Check if a player lost (new points are over 21)
-    checkplayerloss();
+    checkPlayerLoss();
 }
 
 //Mark player as done to not take more cards
@@ -69,7 +69,7 @@ function stay() {
         currentPlayer += 1;
     }
     else {
-        win();
+        checkPlayerWin();
     }
 }
 
@@ -107,7 +107,8 @@ function dealHands() {
         for (var x = 0; x < players.length; x++) {
             var card = deck.pop();
             players[x].Hand.push(card);
-            renderCard(card, x);
+            //Update Player hands
+
             //Change the total for each player
 
         }
@@ -116,13 +117,13 @@ function dealHands() {
 
 }
 
-function checkplayerloss() {
+function checkPlayerLoss() {
     if (players[currentPlayer].Points > 21) {
         //Update the UI for a player lost/is out
     }
 }
 
-function win() {
+function checkPlayerWin() {
     var winner = -1;
     var score = 0;
 
