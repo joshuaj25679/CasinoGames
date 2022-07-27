@@ -1,7 +1,37 @@
-html{
-    /* background-color: black; */
-}
 body{
-    background-image: url('./images/BlackJackTable.png');
-    /* background-image: url('./images/Casino\ Icon.png'); */
+    background-image: url('./images/Generic\ Felt\ Mat.jpeg');
+    color: white;
+}
+
+#container{
+    border: 5px solid black;
+    padding: 20px;
+    margin: 10px;
+}
+
+#top-container{
+    border: 5px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+#hit{
+    border: 5px solid black;
+}
+#stay{
+    border: 5px solid black;
+}
+#turn{
+    border: 5px solid black;
+}
+
+#mid-container{
+    border: 5px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+#bottom-container{
+    border: 5px solid black;
+    padding: 5px;
+    margin: 5px;
 }
