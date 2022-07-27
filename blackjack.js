@@ -54,11 +54,26 @@ var currentPlayer = 0;
 function hitMe() {
     // pop a card from the deck to the current player
     var card = deck.pop();
+    if(card.Value == "A"){
+        card = autoAce(card);
+    }
     players[currentPlayer].Hand.push(card);
     //Change the total points for each player
 
     //Check if a player lost (new points are over 21)
     checkPlayerLoss();
+}
+
+//Deal with A for a 1 or 11
+function autoAce(card){
+    //Get current player points.
+
+    var currentPlayerPoints = 0;
+    //if points + 11 > 21
+    if(currentPlayerPoints + 11 > 21){
+        card.weight = 1;
+    }
+    return card;
 }
 
 //Mark player as done to not take more cards
@@ -83,7 +98,6 @@ function houseturn(){
         if(points < 17){
             hitMe();
         }
-        
     }
     //If over 17 stay
     if(points > 17){
