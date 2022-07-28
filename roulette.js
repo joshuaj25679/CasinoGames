@@ -16,6 +16,7 @@ document.body.append(container);
 startGame();
 
 let wheel = document.getElementsByClassName('wheel')[0];
+<<<<<<< Updated upstream
 let ballTrack = document.getElementsByClassName('ballTrack')[0];
 
 function resetGame(){
@@ -159,4 +160,34 @@ function setBet(e, n, t, o){
         let numArray = n.split(',').map(Number);
         
     }
+=======
+
+function buildBettingBoard(){
+    let bettingBoard = document.createElement('div');
+bettingBoard.setAttribute('id', 'betting_board');
+//board logic here 
+
+//build the board
+var numberBlocks = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, '2 to 1', 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, '2 to 1', 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, '2 to 1'];
+for(i = 0; i < numberBlocks.length; i++){
+    let a = i;
+    var nbClass = (numberBlocks[i] == '2 to 1')? 'tt1_block' : 'number_block';
+    var numberBlock = document.createElement('div');
+    numberBlock.setAttribute('class', nbClass);
+    numberBlock.onclick = function(){
+        if(numberBlocks[a] != '2 to 1'){
+            setBet(''+numberBlocks[a]+'', 'inside_whole', 35);
+        }else{
+            num = (a == 12)? '3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36' : ((a == 25)? '2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35' : '1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34');
+            setBet(num, 'outside_column', 2);
+        }
+    };
+    var nbn = document.createElement('div');
+    nbn.setAttribute('class', 'nbn');
+    nbn.innerText = numberBlocks[i];
+    numberBlock.append(nbn);
+    numberBoard.append(numberBlock);
+}
+bettingBoard.append(numberBoard);
+>>>>>>> Stashed changes
 }
