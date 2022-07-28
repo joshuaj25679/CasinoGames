@@ -113,3 +113,50 @@ function buildWheel(){
 
     container.append(wheel);
 }
+
+function clearBet(){
+    bet = [];
+    numbersBet = [];
+}
+
+function setBet(e, n, t, o){
+    lastWager = wager;
+    wager = (bankValue < wager)? bankValue : wager;
+    if (wager > 0) {
+        if(!container.querySelector('.spinBtn')) {
+            let spinBtn = document.createElement('div');
+            spinBtn.setAttribute('class', 'spinBtn');
+            spinBtn.innerText = 'Spin';
+            spinBtn.onclick = function() {
+                this.remove();
+                spin();
+            };
+            container.append(spinBtn);
+        }
+        bankValue = bankValue - wager;
+        currentBet = currentBet + wager;
+        document.getElementById('bankSpan').innerText = '' + bankValue.toLocaleString('en-GB') + '';
+        document.getElementById('betSpan').innerText = '' + currentBet.toLocaleString('en-GB') + '';
+        for(i = 0; i < bet.length; i++){
+            if(bet[i].numbers == n && bet[i].type == t){
+                bet[i].amt = bet[i].amt + wager;
+                let chipColor = (bet[i].amt < 5)? 'red' : ((bet[i].amt < 10)? 'blue' : (bet[i].amt < 100)? 'orange' : 'gold');
+                e.querySelector('.chip').style.cssText = '';
+                e.querySelector('.chip').setAttribute('class', 'chip' + chipColor);
+                let chipSpan = e.querySelector('.chipSpan');
+                chipSpan.innerText = bet[i].amt;
+                return;
+            }
+        }
+        var obj = {
+            amt: wager,
+            type: t,
+            odds: o,
+            numbers: n
+        };
+        bet.push(obj);
+
+        let numArray = n.split(',').map(Number);
+        
+    }
+}
