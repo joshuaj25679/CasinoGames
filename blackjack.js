@@ -29,12 +29,10 @@ function shuffle() {
         // Pick a remaining element.
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-
         // And swap it with the current element.
         [deck[currentIndex], deck[randomIndex]] = [deck[randomIndex], deck[currentIndex]];
     }
 }
-
 
 //Player Code
 var players = new Array();
