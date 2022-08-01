@@ -1,0 +1,48 @@
+body{
+    background-image: url('./images/Generic\ Felt\ Mat.jpeg');
+}
+
+.blackjackButton{
+    border: 2px;
+}
+
+.grid-container {
+    /* display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px; */
+
+    grid-template-areas:
+     'header header header'
+     'blackjack blank roulette';
+  }
+  .grid-item {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+.grid-item5{
+    grid-area: header;
+}
+
+.grid-item1{
+    grid-area: blackjack;
+}
+
+.grid-item2{
+    grid-area: roulette;
+}
+
+.grid-item3{
+    grid-area: bRules;
+}
+
+.grid-item4{
+    grid-area: rRules;
+}
+
+.grid-item6{
+    grid-area: blank;
+}
