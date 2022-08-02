@@ -9,14 +9,12 @@ let previousNumbers = [];
 let redNums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
 let wheelNumbers = [0, 26, 3, 35, 12, 28, 7, 29, 18, 22, 9, 31, 14, 20, 1, 33, 16, 24, 5, 10, 23, 8, 30, 11, 36, 13, 27, 6, 34, 17, 25, 2, 21, 4, 19, 15, 32];
 
-let container = document.createElement('div');
-container.setAttribute('id', 'container');
-document.body.append(container);
+let container = document.findById('container');
+
 
 startGame();
 
 let wheel = document.getElementsByClassName('wheel')[0];
-<<<<<<< Updated upstream
 let ballTrack = document.getElementsByClassName('ballTrack')[0];
 
 function resetGame(){
@@ -125,9 +123,6 @@ function setBet(e, n, t, o){
     wager = (bankValue < wager)? bankValue : wager;
     if (wager > 0) {
         if(!container.querySelector('.spinBtn')) {
-            let spinBtn = document.createElement('div');
-            spinBtn.setAttribute('class', 'spinBtn');
-            spinBtn.innerText = 'Spin';
             spinBtn.onclick = function() {
                 this.remove();
                 spin();
@@ -160,12 +155,10 @@ function setBet(e, n, t, o){
         let numArray = n.split(',').map(Number);
         
     }
-=======
 
 function buildBettingBoard(){
-    let bettingBoard = document.createElement('div');
-bettingBoard.setAttribute('id', 'betting_board');
-//board logic here 
+    let bettingBoard = document.findById('bettingBoard');
+
 
 //build the board
 var numberBlocks = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, '2 to 1', 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, '2 to 1', 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, '2 to 1'];
@@ -189,5 +182,5 @@ for(i = 0; i < numberBlocks.length; i++){
     numberBoard.append(numberBlock);
 }
 bettingBoard.append(numberBoard);
->>>>>>> Stashed changes
+}
 }
