@@ -38,7 +38,7 @@ var players = new Array();
 function createPlayers(num) {
     players = new Array();
     var hand = new Array();
-    var house = { Name: 'House', ID: i, Points: 0, Hand: hand };
+    var house = { Name: 'House', ID: 0, Points: 0, Hand: hand };
     players.push(house);
     for (var i = 1; i <= num; i++) {
         var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand};
