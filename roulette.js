@@ -153,8 +153,24 @@ function setBet(e, n, t, o){
         bet.push(obj);
 
         let numArray = n.split(',').map(Number);
-        
-    }
+        for(i = 0; i < numArray.length; i++){
+            if(!numbersBet.includes(numArray[i])){
+                numbersBet.push(numArray[i]);
+            }
+        }
+        if(!e.querySelector('.chip')){
+            let chipColor = (wager < 5)? 'red' : ((wager < 10)? 'blue' : ((wager < 100)? 'orange' : 'gold'));
+            let chip = document.createElement('div');
+            chip.set('class', 'chip' + chipColor);
+            let chipSpan = document.createElement('span');
+            chipSpan.setAttribute('class', 'chipSpan');
+            chipSpan.innerText = wager;
+            chip.append(chipSpan);
+            e.append(chip)
+        }
+
+}
+
 
 function buildBettingBoard(){
     let bettingBoard = document.findById('bettingBoard');
@@ -182,5 +198,7 @@ for(i = 0; i < numberBlocks.length; i++){
     numberBoard.append(numberBlock);
 }
 bettingBoard.append(numberBoard);
+
 }
+
 }
