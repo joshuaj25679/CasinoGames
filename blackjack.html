@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="blackjack.js"></script>
     <link rel="stylesheet" href="blackjackStyle.css"/>
     <title>Document</title>
 </head>
@@ -21,28 +22,29 @@
         </div>
         <div id="mid-container">
             <div id="turn">turn</div>
-            <button id="hit">hit</button>
-            <button id="stay">stay</button>
+            <button id="start" onclick="startBlackJack()">Start</button>
+            <button id="hit" onclick="hitMe()">hit</button>
+            <button id="stay" onclick="stay()">stay</button>
         </div>
         <div id="bottom-container">
             <div class="card">
                 <div>bet</div>
-                <img src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
+                <img id="player1Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
                 <div>player1</div>
             </div>
             <div class="card">
                 <div>bet</div>
-                <img src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
+                <img id="player2Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
                 <div>player2</div>
             </div>
             <div class="card">
                 <div>bet</div>
-                <img src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
+                <img id="player3Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
                 <div>player3</div>
             </div>
             <div class="card">
                 <div>bet</div>
-                <img src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
+                <img id="player4Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
                 <div>player4</div>
             </div>
         </div>

@@ -23,7 +23,6 @@ function createDeck() {
 //Use a Fisher-Yates shuffle to not have a bias
 function shuffle() {
     var currentIndex = deck.length, randomIndex;
-
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
         // Pick a remaining element.
@@ -38,11 +37,11 @@ function shuffle() {
 var players = new Array();
 function createPlayers(num) {
     players = new Array();
+    var hand = new Array();
     var house = { Name: 'House', ID: i, Points: 0, Hand: hand };
     players.push(house);
     for (var i = 1; i <= num; i++) {
-        var hand = new Array();
-        var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand };
+        var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand};
         players.push(player);
     }
 }
@@ -57,21 +56,30 @@ function hitMe() {
     }
     players[currentPlayer].Hand.push(card);
     //Change the total points for each player
-
+    players[currentPlayer].Points = updatePoints(players[currentPlayer].Hand);
     //Check if a player lost (new points are over 21)
-    checkPlayerLoss();
+    if(checkPlayerLoss()){
+        stay();
+    }
 }
 
 //Deal with A for a 1 or 11
 function autoAce(card){
     //Get current player points.
-
-    var currentPlayerPoints = 0;
+    var currentPlayerPoints = players[currentPlayer].Points;
     //if points + 11 > 21
     if(currentPlayerPoints + 11 > 21){
         card.weight = 1;
     }
     return card;
+}
+
+function updatePoints(hand){
+    var updatedPoints = 0;
+    hand.forEach(Card => {
+        updatedPoints += Card.weight;
+    });
+    return updatedPoints;
 }
 
 //Mark player as done to not take more cards
@@ -80,6 +88,7 @@ function stay() {
     if (currentPlayer != players.length - 1) {
         //Change player turns
         currentPlayer += 1;
+        updatePlayerTurns();
     }
     else {
         checkPlayerWin();
@@ -103,16 +112,33 @@ function houseturn(){
     }
 }
 
+function displayHand(){
+    var player = players[currentPlayer];
+    console.log(player);
+    console.log(player.Hand[0]);
+    var cardToDisplay = "card" + player.Hand[0].Suit + player.Hand[0].Value + ".png";
+    console.log(cardToDisplay);
+
+    if(currentPlayer < 5){
+        console.log(cardToDisplay)
+        document.getElementById("player" + currentPlayer+1 + "Hand" ).src = "./images/Cards/" + cardToDisplay;
+    }
+    else{
+        console.log(cardToDisplay)
+        document.getElementById("house").src = "./images/Cards/" + cardToDisplay;
+    }
+    
+}
+
 //Game Code
-function startblackjack() {
+function startBlackJack() {
     // deal 2 cards to every player object
-    currentPlayer = 0;
+    document.getElementById("start").style.visibility = "hidden";
     createDeck();
     shuffle();
-    createPlayers(1);
+    createPlayers(4);
     //Render the UI
     dealHands();
-
 }
 
 //Fill player hands of 2 cards
@@ -124,18 +150,18 @@ function dealHands() {
             var card = deck.pop();
             players[x].Hand.push(card);
             //Update Player hands
-
-            //Change the total for each player
-
+            displayHand();
         }
     }
-    //Update Deck UI
-
 }
 
 function checkPlayerLoss() {
+    //Return true or false
     if (players[currentPlayer].Points > 21) {
-        //Update the UI for a player lost/is out
+        return true;
+    }
+    else{
+        return false;
     }
 }
 
@@ -152,4 +178,9 @@ function checkPlayerWin() {
     }
 
     //Declare Winner
+}
+
+function updatePlayerTurns() {
+    var playerTurn = document.getElementById("turn");
+    playerTurn.innerHTML = players[currentPlayer].Name;
 }
