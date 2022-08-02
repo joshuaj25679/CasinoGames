@@ -16,7 +16,6 @@ document.body.append(container);
 startGame();
 
 let wheel = document.getElementsByClassName('wheel')[0];
-<<<<<<< Updated upstream
 let ballTrack = document.getElementsByClassName('ballTrack')[0];
 
 function resetGame(){
@@ -160,7 +159,6 @@ function setBet(e, n, t, o){
         let numArray = n.split(',').map(Number);
         
     }
-=======
 
 function buildBettingBoard(){
     let bettingBoard = document.createElement('div');
@@ -189,5 +187,4 @@ for(i = 0; i < numberBlocks.length; i++){
     numberBoard.append(numberBlock);
 }
 bettingBoard.append(numberBoard);
->>>>>>> Stashed changes
 }
