@@ -37,13 +37,12 @@ function shuffle() {
 var players = new Array();
 function createPlayers(num) {
     players = new Array();
-    var hand = new Array();
-    var house = { Name: 'House', ID: 0, Points: 0, Hand: hand };
-    players.push(house);
     for (var i = 1; i <= num; i++) {
-        var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand};
+        var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: new Array()};
         players.push(player);
     }
+    var house = { Name: 'House', ID: 0, Points: 0, Hand: new Array() };
+    players.push(house);
 }
 
 //Add cards to player hand
@@ -55,6 +54,7 @@ function hitMe() {
         card = autoAce(card);
     }
     players[currentPlayer].Hand.push(card);
+    displayHand(players[currentPlayer].Hand.length-1);
     //Change the total points for each player
     players[currentPlayer].Points = updatePoints(players[currentPlayer].Hand);
     //Check if a player lost (new points are over 21)
@@ -84,11 +84,13 @@ function updatePoints(hand){
 
 //Mark player as done to not take more cards
 function stay() {
+    resetHand();
     // move on to next player, if any
     if (currentPlayer != players.length - 1) {
         //Change player turns
         currentPlayer += 1;
         updatePlayerTurns();
+        displayHand(0);
     }
     else {
         checkPlayerWin();
@@ -112,22 +114,26 @@ function houseturn(){
     }
 }
 
-function displayHand(){
+function displayHand(i){
     var player = players[currentPlayer];
-    console.log(player);
-    console.log(player.Hand[0]);
-    var cardToDisplay = "card" + player.Hand[0].Suit + player.Hand[0].Value + ".png";
-    console.log(cardToDisplay);
-
-    if(currentPlayer < 5){
-        console.log(cardToDisplay)
+    var cardToDisplay = "card" + player.Hand[i].Suit + player.Hand[i].Value + ".png";
+    if(currentPlayer < 4){
         document.getElementById(`player${currentPlayer+1}Hand`).src = "./images/Cards/" + cardToDisplay;
     }
     else{
-        console.log(cardToDisplay)
         document.getElementById("house").src = "./images/Cards/" + cardToDisplay;
     }
     
+}
+
+function resetHand(){
+    var cardToDisplay = "./images/Cards/cardBack_red4.png";
+    if(currentPlayer < 4){
+        document.getElementById(`player${currentPlayer+1}Hand`).src = cardToDisplay;
+    }
+    else{
+        document.getElementById("house").src = cardToDisplay;
+    }
 }
 
 //Game Code
@@ -137,7 +143,7 @@ function startBlackJack() {
     createDeck();
     shuffle();
     createPlayers(4);
-    //Render the UI
+    updatePlayerTurns();
     dealHands();
 }
 
@@ -150,7 +156,7 @@ function dealHands() {
             var card = deck.pop();
             players[x].Hand.push(card);
             //Update Player hands
-            displayHand();
+            displayHand(0);
         }
     }
 }
@@ -181,6 +187,7 @@ function checkPlayerWin() {
 }
 
 function updatePlayerTurns() {
+    console.log(players);
     var playerTurn = document.getElementById("turn");
     playerTurn.innerHTML = players[currentPlayer].Name;
 }
