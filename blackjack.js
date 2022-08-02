@@ -121,7 +121,7 @@ function displayHand(){
 
     if(currentPlayer < 5){
         console.log(cardToDisplay)
-        document.getElementById("player" + currentPlayer+1 + "Hand" ).src = "./images/Cards/" + cardToDisplay;
+        document.getElementById(`player${currentPlayer+1}Hand`).src = "./images/Cards/" + cardToDisplay;
     }
     else{
         console.log(cardToDisplay)
