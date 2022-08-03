@@ -1,48 +1,48 @@
 body{
     background-image: url('./images/Generic\ Felt\ Mat.jpeg');
-}
-
-.blackjackButton{
-    border: 2px;
-}
-
-.grid-container {
-    /* display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px; */
-
-    grid-template-areas:
-     'header header header'
-     'blackjack blank roulette';
-  }
-  .grid-item {
-    /* background-color: rgba(255, 255, 255, 0.8); */
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 30px;
+    color: white;
     text-align: center;
+}
+
+button{
+    background-color: #4CAF50;
+    width: 50%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    /* box-shadow: 0 8px 16px 0 #9fafa4, 0 6px 20px 0 #9fafa4; */
+}
+
+table{
+    width: 100%;
+    text-align: center;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
-.grid-item5{
-    grid-area: header;
-}
+  .roulette{
+    font-size: 20px;
+    line-height: 1.8
+  }
 
-.grid-item1{
-    grid-area: blackjack;
-}
+  .blackjack{
+    font-size: 15px;
+    line-height: 1.8
+  }
 
-.grid-item2{
-    grid-area: roulette;
-}
+  .rules{
+    font-size: 25px;
+  }
 
-.grid-item3{
-    grid-area: bRules;
-}
-
-.grid-item4{
-    grid-area: rRules;
-}
-
-.grid-item6{
-    grid-area: blank;
-}
+  .title{
+    font-size: 75px;
+  }
