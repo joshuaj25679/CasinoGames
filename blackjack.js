@@ -4,6 +4,10 @@ var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
 var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 var deck = new Array();
 
+//Player Variables
+var currentPlayer = 0;
+var players = new Array();
+
 //Fill the Deck with unique cards
 function createDeck() {
     deck = new Array();
@@ -34,7 +38,6 @@ function shuffle() {
 }
 
 //Player Code
-var players = new Array();
 function createPlayers(num) {
     players = new Array();
     for (var i = 1; i <= num; i++) {
@@ -45,8 +48,24 @@ function createPlayers(num) {
     players.push(house);
 }
 
+//Game Code
+function startBlackJack() {
+    deck = new Array();
+    players = new Array();
+    currentPlayer = 0;
+    // deal 2 cards to every player object
+    document.getElementById("start").style.visibility = "hidden";
+    document.getElementById("hit").style.visibility = "visible";
+    document.getElementById("stay").style.visibility = "visible";
+    createDeck();
+    shuffle();
+    createPlayers(4);
+    updatePlayerTurns();
+    dealHands();
+    displayCardsInHand();
+}
+
 //Add cards to player hand
-var currentPlayer = 0;
 function hitMe() {
     // pop a card from the deck to the current player
     var card = deck.pop();
@@ -54,12 +73,34 @@ function hitMe() {
         card = autoAce(card);
     }
     players[currentPlayer].Hand.push(card);
+
     displayHand(players[currentPlayer].Hand.length-1);
+    displayCardsInHand();
     //Change the total points for each player
     players[currentPlayer].Points = updatePoints(players[currentPlayer].Hand);
+    
     //Check if a player lost (new points are over 21)
     if(checkPlayerLoss()){
+        players[currentPlayer].Points = updatePoints(players[currentPlayer].Hand);
+        document.getElementById(`player${currentPlayer+1}Points`).innerHTML = "Busted";
         stay();
+    }
+}
+
+//Mark player as done to not take more cards
+function stay() {
+    resetHand();
+    // move on to next player, if any
+    if (currentPlayer != players.length - 1) {
+        //Change player turns
+        currentPlayer += 1;
+        updatePlayerTurns();
+        players[currentPlayer].Points = updatePoints(players[currentPlayer].Hand);
+        displayCardsInHand();
+        displayHand(0);
+    }
+    else {
+        checkPlayerWin();
     }
 }
 
@@ -76,25 +117,10 @@ function autoAce(card){
 
 function updatePoints(hand){
     var updatedPoints = 0;
-    hand.forEach(Card => {
-        updatedPoints += Card.weight;
-    });
+    for(let i = 0; i < hand.length; i++){
+        updatedPoints += hand[i].Weight;
+    };
     return updatedPoints;
-}
-
-//Mark player as done to not take more cards
-function stay() {
-    resetHand();
-    // move on to next player, if any
-    if (currentPlayer != players.length - 1) {
-        //Change player turns
-        currentPlayer += 1;
-        updatePlayerTurns();
-        displayHand(0);
-    }
-    else {
-        checkPlayerWin();
-    }
 }
 
 //Dealer/House CPU turn
@@ -112,39 +138,6 @@ function houseturn(){
     if(points > 17){
         stay();
     }
-}
-
-function displayHand(i){
-    var player = players[currentPlayer];
-    var cardToDisplay = "card" + player.Hand[i].Suit + player.Hand[i].Value + ".png";
-    if(currentPlayer < 4){
-        document.getElementById(`player${currentPlayer+1}Hand`).src = "./images/Cards/" + cardToDisplay;
-    }
-    else{
-        document.getElementById("house").src = "./images/Cards/" + cardToDisplay;
-    }
-    
-}
-
-function resetHand(){
-    var cardToDisplay = "./images/Cards/cardBack_red4.png";
-    if(currentPlayer < 4){
-        document.getElementById(`player${currentPlayer+1}Hand`).src = cardToDisplay;
-    }
-    else{
-        document.getElementById("house").src = cardToDisplay;
-    }
-}
-
-//Game Code
-function startBlackJack() {
-    // deal 2 cards to every player object
-    document.getElementById("start").style.visibility = "hidden";
-    createDeck();
-    shuffle();
-    createPlayers(4);
-    updatePlayerTurns();
-    dealHands();
 }
 
 //Fill player hands of 2 cards
@@ -172,22 +165,57 @@ function checkPlayerLoss() {
 }
 
 function checkPlayerWin() {
-    var winner = -1;
-    var score = 0;
-
-    for (var i = 0; i < players.length; i++) {
+    var winner = "";
+    var score = players[4].Points;
+    for (var i = 0; i < players.length-1; i++) {
         if (players[i].Points > score && players[i].Points < 22) {
-            winner = i;
+            winner = winner + players[i].Name + ", ";
         }
-
-        score = players[i].Points;
     }
-
     //Declare Winner
+    document.getElementById("turn").innerHTML = "Winners : " + winner;
+    document.getElementById("hit").style.visibility = "hidden";
+    document.getElementById("stay").style.visibility = "hidden";
+    document.getElementById("start").style.visibility = "visible";
 }
 
 function updatePlayerTurns() {
-    console.log(players);
     var playerTurn = document.getElementById("turn");
-    playerTurn.innerHTML = players[currentPlayer].Name;
+    playerTurn.innerHTML = players[currentPlayer].Name + " Turn";
+}
+
+function displayHand(i){
+    var player = players[currentPlayer];
+    var cardToDisplay = "card" + player.Hand[i].Suit + player.Hand[i].Value + ".png";
+    if(currentPlayer < 4){
+        document.getElementById(`player${currentPlayer+1}Hand`).src = "./images/Cards/" + cardToDisplay;
+    }
+    else{
+        document.getElementById("house").src = "./images/Cards/" + cardToDisplay;
+    }
+    
+}
+
+function resetHand(){
+    var cardToDisplay = "./images/Cards/cardBack_red4.png";
+    if(currentPlayer < 4){
+        document.getElementById(`player${currentPlayer+1}Hand`).src = cardToDisplay;
+    }
+    else{
+        document.getElementById("house").src = cardToDisplay;
+    }
+}
+
+function displayCardsInHand(){
+    var player = players[currentPlayer];
+    totalPoints = "";
+    for (var i = 0; i < player.Hand.length; i++) {
+        totalPoints += player.Hand[i].Value + ", ";
+    }
+    if(currentPlayer < 4){
+        document.getElementById(`player${currentPlayer+1}Points`).innerHTML = totalPoints;
+    }
+    else{
+        document.getElementById("House").innerHTML = totalPoints;
+    }
 }

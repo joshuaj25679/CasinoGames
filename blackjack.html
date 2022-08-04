@@ -12,43 +12,44 @@
     <div id="container">
         <div id="top-container">
             <div id="container-house">
+                <div>House</div>
                 <img src="./images/Cards/cardBack_red4.png" id="house" alt="house"/>
-                <div>house</div>
+                <div id="House">Hand: </div>
             </div>
             <div id="container-home">
                 <a id="goHome" href="index.html">Go back to main</a>
-                <div id="turn">turn</div>
+                <div id="turn">Player Turns: </div>
             </div>
             <div id="container-deck">
                 <img src="./images/Cards/cardBack_red4.png" id="deck" alt="deck"/>
-                <div>deck</div>
+                <div>Deck</div>
             </div>
         </div>
         <div id="mid-container">
+            <button id="hit" onclick="hitMe()" style="visibility: hidden;">Hit</button>
             <button id="start" onclick="startBlackJack()">Start</button>
-            <button id="hit" onclick="hitMe()">hit</button>
-            <button id="stay" onclick="stay()">stay</button>
+            <button id="stay" onclick="stay()" style="visibility: hidden;">Stay</button>
         </div>
         <div id="bottom-container">
             <div class="card">
-                <div>bet</div>
+                <div id="player1Points">Hand: </div>
                 <img id="player1Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
-                <div>player1</div>
+                <div>Player1</div>
             </div>
             <div class="card">
-                <div>bet</div>
+                <div id="player2Points">Hand: </div>
                 <img id="player2Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
-                <div>player2</div>
+                <div>Player2</div>
             </div>
             <div class="card">
-                <div>bet</div>
+                <div id="player3Points">Hand: </div>
                 <img id="player3Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
-                <div>player3</div>
+                <div>Player3</div>
             </div>
             <div class="card">
-                <div>bet</div>
+                <div id="player4Points">Hand: </div>
                 <img id="player4Hand" src="./images/Cards/cardBack_red4.png" alt="cardred4"/>
-                <div>player4</div>
+                <div>Player4</div>
             </div>
         </div>
     </div>
