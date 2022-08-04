@@ -13,16 +13,31 @@
     <div class="icon">
         <img src='/images/Roulette Icon.png' />
     </div>
+
     <div class="container">
-        <div>wheel</div>
-        <div class="spinBtn">Spin</div>
-        <div class="bankAndBetContainer">
-            <div class="bank">bank</div>
-            <div class="bet">bet</div>
+
+        <div class="left">
+            <div>
+                <img src="images/wheel.png" id="wheel" />
+            </div>
+            
+            <div id="bankAndBetContainer">
+                <div id="bank">bank</div>
+                <div id="bet">bet</div>
+            </div>
+            <div class="spinBtn" >Spin</div>
         </div>
-        <div class="bettingBoard"></div>
+
+        <div class="right">
+        <div class="bettingBoard">
+        <div class="winningStringBox">win string</div>
+        </div>
+        </div>
     </div>
-    <a href="index.html" class="homeBtn">Home</a>
+    <a href="index.html" class="homeBtn">
+        <button>Home</button>
+    </a>
+    <button onclick="resetGame()">Reset</button>
     <script src="roulette.js"></script>
 </body>
 
