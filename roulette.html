@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="roulette.css">
+    <title>Roulette</title>
+</head>
+
+<body>
+    <div class="icon">
+        <img src='/images/Roulette Icon.png' />
+    </div>
+
+    <div class="container">
+
+        <div class="left">
+            <div>
+                <img src="images/wheel.png" id="wheel" />
+            </div>
+            
+            <div id="bankAndBetContainer">
+                <div id="bank">bank</div>
+                <div id="bet">bet</div>
+            </div>
+            <div class="spinBtn" >Spin</div>
+        </div>
+
+        <div class="right">
+        <div class="bettingBoard">
+        <div class="winningStringBox">win string</div>
+        </div>
+        </div>
+    </div>
+    <a href="index.html" class="homeBtn">
+        <button>Home</button>
+    </a>
+    <button onclick="resetGame()">Reset</button>
+    <script src="roulette.js"></script>
+</body>
+
+</html>
