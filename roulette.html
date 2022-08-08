@@ -10,34 +10,60 @@
 </head>
 
 <body>
-    <div class="icon">
-        <img src='/images/Roulette Icon.png' />
-    </div>
-
     <div class="container">
 
         <div class="left">
             <div>
                 <img src="images/wheel.png" id="wheel" />
             </div>
-            
-            <div id="bankAndBetContainer">
-                <div id="bank">bank</div>
-                <div id="bet">bet</div>
+            <div class="spinContainer">
+                <div class="spinBtn" onclick="getSpinNum()">Spin</div>
             </div>
-            <div class="spinBtn" >Spin</div>
+            <div class="chipContainer">
+
+                <img src="images/Chip5.png" onclick="chip1()" class='chip' />
+                <img src="images/Chip10.png" onclick="chip2()" class='chip' />
+                <img src="images/Chip20.png" onclick="chip3()" class='chip' />
+                <img src="images/Chip50.png" onclick="chip4()" class='chip' />
+                <img src="images/Chip100.png" onclick="chip5()" class='chip' />
+                <img src="images/Chip500.png" onclick="chip6()" class='chip' />
+                <img src="images/Chip1000.png" onclick="chip7()" class='chip' />
+              
+            </div>
+            <br />
+
+            <div id="bankAndBetContainer">
+                <div id="bank"></div>
+                <div id="bet"></div>
+                <div id="resultBox"></div>
+          
+            </div>
+            <br />
+            <div class="btnRow">
+            <button onclick="startGame()">Start</button>
+            <a href="index.html" class="homeBtn">
+                <button>Home</button>
+            </a>
+            <button onclick="resetGame()">Reset</button>
+        </div>
         </div>
 
         <div class="right">
-        <div class="bettingBoard">
-        <div class="winningStringBox">win string</div>
-        </div>
+            <img src="images/bettingBoard.jpg" />
+            <form>
+                <input type="checkbox" id="red" value="Red">
+                <label for="red">Red</label>
+                <input type="checkbox" id="black" value="Black">
+                <label for="black">Black</label>
+                <input type="checkbox" id="green" value="Green">
+                <label for="green">Green</label>
+           <input type="text" id = "betNumber">
+        </form>
+        <div id = 'betBox'>...</div>
         </div>
     </div>
-    <a href="index.html" class="homeBtn">
-        <button>Home</button>
-    </a>
-    <button onclick="resetGame()">Reset</button>
+
+
     <script src="roulette.js"></script>
 </body>
 
