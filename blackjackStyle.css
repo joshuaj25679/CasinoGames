@@ -1,5 +1,6 @@
 body{
     background-image: url('./images/Generic\ Felt\ Mat.jpeg');
+    background-size: cover;
     color: white;
     font-size: 14pt;
 }
@@ -31,6 +32,26 @@ body{
     padding: auto;
     margin: auto;
 }
+
+#container-home{
+    text-align: center;
+}
+
+#goHome{
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: rgb(210, 206, 206);
+    text-decoration: none;
+    color: black;
+}
+
+#turn{
+    /* border: 3px solid white; */
+    font-size: 16pt;
+    padding: auto;
+    margin-top: 20px;
+}
+
 #deck{
     /* border: 3px solid white; */
     padding: auto;
@@ -51,21 +72,25 @@ body{
     display: flex;
 }
 
+button{
+    font-size: 12pt;
+    /* padding: 30px; */
+}
+
+#start{
+    padding: 10px;
+    margin: auto;
+}
+
 #hit{
     /* border: 3px solid white; */
-    padding: auto;
+    padding: 10px;
     margin: auto;
 }
 
 #stay{
     /* border: 3px solid white; */
-    padding: auto;
-    margin: auto;
-}
-
-#turn{
-    /* border: 3px solid white; */
-    padding: auto;
+    padding: 10px;
     margin: auto;
 }
 
@@ -80,4 +105,6 @@ body{
     /* border: 3px solid white; */
     padding: auto;
     margin: auto;
+    font-size: 16pt;
 }
+
